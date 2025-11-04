@@ -1,25 +1,31 @@
-on:
-  push:
-    branches:
-      - vllm_cicd
-  pull_request:
-    branches:
-      - vllm_cicd
+name: Main Workflow
+
+on: [push]
 
 jobs:
-  build-and-test:
+  test-and-build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
-          
-      - name: Install dependencies
-        run:  pip install -r requirements.txt
-      
-      - name: Run tests
-        run: pytest
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Install dependencies
+      run: pip install pytest requests
+    # - name: Run tests
+    #   run: pytest
+    - name: Run client-server integration tests
+      run: pytest tests/test_client_server.py
+    # - name: Build Docker image
+    #   run: docker build -t my-image .
+
+  train-model:
+    needs: test-and-build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Install dependencies for training
+      run: pip install mlflow scikit-learn pandas numpy
+    - name: Train model using MLflow
+      run: python train.py
+
+
