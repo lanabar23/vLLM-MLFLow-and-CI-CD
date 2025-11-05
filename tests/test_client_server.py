@@ -1,9 +1,11 @@
 import pytest
 import requests
 
+your_server_url = '176.108.250.95'
+
 @pytest.fixture
 def server_url():
-    return 'http://your-server-url'
+    return f'http://{your_server_url}'
 
 def test_get_data(server_url):
     response = requests.get(f"{server_url}/data")
