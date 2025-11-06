@@ -1,20 +1,36 @@
 import pytest
 import requests
-from .constants import SERVER_URL, PREDICT_URL
+import logging
+from .constants import SERVER_URL
 
-your_server_url = PREDICT_URL #SERVER_URL
+# Настройка логирования
+logging.basicConfig(level=logging.DEBUG)
+
+your_server_url = SERVER_URL
 
 @pytest.fixture
 def server_url():
     return f'http://{your_server_url}'
 
 def test_get_data(server_url):
-    response = requests.get(f"{server_url}/data")
-    assert response.status_code == 200
-    assert isinstance(response.json(), dict)
+    logging.debug(f"Отправляем GET-запрос на {server_url}/data")
+    try:
+        response = requests.get(f"{server_url}/data", timeout=10)
+        logging.debug(f"Получен ответ с кодом {response.status_code}")
+        assert response.status_code == 200
+        assert isinstance(response.json(), dict)
+    except requests.exceptions.RequestException as e:
+        logging.error(f"Ошибка при отправке GET-запроса: {e}")
+        pytest.fail(f"Ошибка при отправке GET-запроса: {e}")
 
 def test_post_data(server_url):
     payload = {'field': 'value'}
-    response = requests.post(f"{server_url}/post-data", json=payload)
-    assert response.status_code == 201
-    assert response.json()['message'] == 'Success!'
+    logging.debug(f"Отправляем POST-запрос на {server_url}/post-data с данными: {payload}")
+    try:
+        response = requests.post(f"{server_url}/post-data", json=payload, timeout=10)
+        logging.debug(f"Получен ответ с кодом {response.status_code}")
+        assert response.status_code == 201
+        assert response.json()['message'] == 'Success!'
+    except requests.exceptions.RequestException as e:
+        logging.error(f"Ошибка при отправке POST-запроса: {e}")
+        pytest.fail(f"Ошибка при отправке POST-запроса: {e}")
