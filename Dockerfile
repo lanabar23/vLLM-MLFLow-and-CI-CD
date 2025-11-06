@@ -6,4 +6,4 @@ COPY . .
 
 RUN pip install Flask
 
-CMD ["python", "src/server/main.py"]
+CMD ["python", "src/server/server.py"]

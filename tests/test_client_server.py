@@ -1,7 +1,8 @@
 import pytest
 import requests
+from constants inport SERVER_URL
 
-your_server_url = '176.108.250.95'
+your_server_url = SERVER_URL
 
 @pytest.fixture
 def server_url():
