@@ -1,8 +1,8 @@
 import pytest
 import requests
-from .constants import SERVER_URL
+from .constants import SERVER_URL, PREDICT_URL
 
-your_server_url = SERVER_URL
+your_server_url = PREDICT_URL #SERVER_URL
 
 @pytest.fixture
 def server_url():
