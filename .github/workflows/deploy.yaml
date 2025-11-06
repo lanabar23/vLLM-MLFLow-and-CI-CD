@@ -1,8 +1,8 @@
 name: Deploy to VM
 
 on:
-  pull:
-  #push:
+  #pull:
+  push:
     branches:
       - main
 
@@ -26,9 +26,38 @@ jobs:
 
     - name: Deploy to VM
       run: |
-        ssh username@176.108.250.95 <<EOF
-        cd /path/to/your/repository
+        ssh lana_sbervm_free@176.108.250.95 <<EOF
+        cd /vLLM-MLFLow-and-CI-CD/my_project
         git pull
         source venv/bin/activate
         FLASK_APP=app.py flask run --host=0.0.0.0 --port=5000 &
+        EOF
+
+        ssh lana_sbervm_free@176.108.250.95 <<EOF
+
+        # Переходим в корневую директорию
+        cd ~/
+
+        # Создаем новую директорию для репозитория, если её нет
+        if [[ ! -d "/vLLM-MLFLow-and-CI-CD/my_project" ]]; then
+            mkdir -p /path/to/your/repository
+        fi
+
+        # Перехожу в директорию проекта
+        cd /vLLM-MLFLow-and-CI-CD/my_project
+
+        # Клонируем репозиторий, если он отсутствует
+        if [[ ! -d ".git" ]]; then
+            git clone git@lanabar23/vLLM-MLFLow-and-CI-CD.git .
+        else
+            # Обновляем проект
+            git pull origin vllm_cicd
+        fi
+
+        # Активация виртуального окружения
+        source venv/bin/activate
+
+        # Запускаем Flask-приложение
+        FLASK_APP=app.py flask run --host=0.0.0.0 --port=5000 &
+
         EOF
