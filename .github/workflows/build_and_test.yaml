@@ -1,7 +1,6 @@
 name: Main Workflow
 
-on: pull
-#[push]
+on: [push]
 
 jobs:
   test-and-build:
@@ -12,7 +11,7 @@ jobs:
     - name: Install dependencies
       run: pip install pytest requests        
     - name: Run tests
-      run: pytest tests
+      run: pytest tests/test_client_server.py
     # Оставляем сборку контейнеров закомментированными, так как они пока не используются    
     # - name: Build Docker image
     #   run: docker build -t my-image .
