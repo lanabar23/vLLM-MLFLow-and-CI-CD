@@ -1,7 +1,7 @@
-import pytest
+#import pytest
 import subprocess
 
-@pytest.fixture
+#@pytest.fixture
 def server_url():
     return  '5.255.255.77' # "176.108.250.95"  # Замените на ваш IP-адрес
 
@@ -13,3 +13,6 @@ def test_ping_server(server_url):
         assert "4 packets transmitted, 4 received" in result.stdout
     except subprocess.CalledProcessError as e:
         pytest.fail(f"Ошибка при выполнении ping: {e}")
+
+if __name__=="__name__":
+    test_ping_server(server_url())
