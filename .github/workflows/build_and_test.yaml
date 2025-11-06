@@ -3,7 +3,18 @@ name: Main Workflow
 on: [push]
 
 jobs:
+  test-ping-external_IP:
+    runs-on: ubuntu-latest
+    steps: 
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Install dependencies
+      run: pip install pytest requests        
+    - name: Run tests
+      run: pytest tests/test_ping.py
+
   test-and-build:
+    needs: test-ping-external_IP
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
