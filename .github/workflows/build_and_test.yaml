@@ -17,15 +17,15 @@ jobs:
     # - name: Build Docker image
     #   run: docker build -t my-image .
 
-#   train-model:
-#     needs: test-and-build
-#     runs-on: ubuntu-latest
-#     steps:
-#     - name: Checkout repository
-#       uses: actions/checkout@v2
-#     - name: Install dependencies for training
-#       run: pip install mlflow scikit-learn pandas numpy
-#     - name: Run Model Tests
-#       run: pytest tests/model_tests.py
-#     - name: Train model using MLflow
-#       run: python train.py
+  train-model:
+    needs: test-and-build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Install dependencies for training
+      run: pip install mlflow scikit-learn pandas numpy
+    - name: Run Model Tests
+      run: pytest tests/model_tests.py
+    - name: Train model using MLflow
+      run: python train.py
