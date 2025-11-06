@@ -11,8 +11,8 @@ jobs:
     - name: Install dependencies
       run: pip install pytest requests        
     - name: Run tests
-    # Оставляем сборку контейнеров закомментированными, так как они пока не используются
-    #   run: pytest
+      run: pytest tests
+    # Оставляем сборку контейнеров закомментированными, так как они пока не используются    
     # - name: Build Docker image
     #   run: docker build -t my-image .
 
