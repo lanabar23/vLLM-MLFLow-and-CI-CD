@@ -1,4 +1,5 @@
 import unittest
+import src
 from src.client.client import send_request
 from constants import PREDICT_URL
 

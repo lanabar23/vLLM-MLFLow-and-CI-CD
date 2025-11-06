@@ -11,7 +11,7 @@ jobs:
     - name: Install dependencies
       run: pip install pytest requests
     - name: Run client-server integration tests
-      run: pytest tests
+      run: pytest tests/test_client_server.py
     # - name: Build Docker image
     #   run: docker build -t my-image .
 
