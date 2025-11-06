@@ -1,7 +1,6 @@
 name: Deploy to VM
 
 on:
-  #pull:
   push:
     branches:
       - main

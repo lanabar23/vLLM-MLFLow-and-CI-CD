@@ -3,7 +3,7 @@ import subprocess
 
 @pytest.fixture
 def server_url():
-    return "176.108.250.95"  # Замените на ваш IP-адрес
+    return  '5.255.255.77' # "176.108.250.95"  # Замените на ваш IP-адрес
 
 def test_ping_server(server_url):
     try:
