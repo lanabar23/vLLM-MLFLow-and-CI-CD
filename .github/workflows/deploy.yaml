@@ -1,0 +1,34 @@
+name: Deploy to VM
+
+on:
+  pull:
+  #push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        python -m venv venv
+        source venv/bin/activate
+        pip install -r requirements.txt
+
+    - name: Deploy to VM
+      run: |
+        ssh username@176.108.250.95 <<EOF
+        cd /path/to/your/repository
+        git pull
+        source venv/bin/activate
+        FLASK_APP=app.py flask run --host=0.0.0.0 --port=5000 &
+        EOF
