@@ -1,6 +1,6 @@
 import unittest
 import requests
-from constants import PREDICT_URL
+from .constants import PREDICT_URL
 
 
 # class TestServer(unittest.TestCase):

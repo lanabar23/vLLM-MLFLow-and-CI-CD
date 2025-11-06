@@ -1,7 +1,7 @@
 import unittest
 import src
 from src.client.client import send_request
-from constants import PREDICT_URL
+from .constants import PREDICT_URL
 
 class TestClient(unittest.TestCase):
     def test_send_request(self):

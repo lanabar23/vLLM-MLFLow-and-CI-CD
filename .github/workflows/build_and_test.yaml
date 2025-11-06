@@ -13,7 +13,7 @@ jobs:
     # - name: Run tests
     #   run: pytest
     - name: Run client-server integration tests
-      run: pytest tests/test_client_server.py
+      run: pytest tests  #/test_client_server.py
     # - name: Build Docker image
     #   run: docker build -t my-image .
 
