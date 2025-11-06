@@ -1,6 +1,6 @@
 import pytest
 import requests
-from .constants import SERVER_URL
+from ..constants import SERVER_URL
 
 your_server_url = SERVER_URL
 
