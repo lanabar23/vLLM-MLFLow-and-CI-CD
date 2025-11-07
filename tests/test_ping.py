@@ -1,7 +1,7 @@
 #import pytest
 import logging
 import subprocess
-from .constants import SERVER_URL
+from constants import SERVER_URL
 
 #@pytest.fixture
 def server_url():
