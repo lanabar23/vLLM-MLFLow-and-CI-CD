@@ -6,7 +6,8 @@ from constants import SERVER_URL
 # Настройка логирования
 logging.basicConfig(level=logging.DEBUG)
 
-your_server_url = f'http://{SERVER_URL}' #SERVER_URL
+your_server_url = f'http://{SERVER_URL}' #
+print(your_server_url)
 
 #@pytest.fixture
 def server_url():
@@ -14,6 +15,7 @@ def server_url():
 
 def test_get_data(server_url):
     logging.debug(f"Отправляем GET-запрос на {server_url}/data")
+    print('get')
     try:
         response = requests.get(f"{server_url}/data", timeout=10)
         logging.debug(f"Получен ответ с кодом {response.status_code}")
@@ -26,6 +28,7 @@ def test_get_data(server_url):
 def test_post_data(server_url):
     payload = {'field': 'value'}
     logging.debug(f"Отправляем POST-запрос на {server_url}/post-data с данными: {payload}")
+    print('post')
     try:
         response = requests.post(f"{server_url}/post-data", json=payload, timeout=10)
         logging.debug(f"Получен ответ с кодом {response.status_code}")
