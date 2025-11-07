@@ -5,7 +5,7 @@ from constants import SERVER_URL
 
 #@pytest.fixture
 def server_url():
-    return  '5.255.255.77' # "176.108.250.95"  # Замените на ваш IP-адрес
+    return  SERVER_URL #'5.255.255.77' # "176.108.250.95"  # Замените на ваш IP-адрес
 
 def test_ping_ip(server_url):
     try:
