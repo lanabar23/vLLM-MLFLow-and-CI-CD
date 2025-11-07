@@ -10,7 +10,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
     - name: Install dependencies for pre-testing
-      run: pip install scikit-learn pandas numpy langfuse transformers  torch # mlflow 
+      run: pip install scikit-learn pandas numpy langfuse transformers  torch dotenv # mlflow 
     - name: Run Model Pre-Tests
       run: python tests/model_pretest.py
       # run: pytest tests/model_pretest.py
