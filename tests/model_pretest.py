@@ -9,7 +9,7 @@ import os
 import models_and_prompts 
 
 
-loadenv()
+load_dotenv()
 public_key = os.getenv('LF_PUBKEY')
 secret_key = os.getenv('LF_SECKEY')
 token = os.getenv('HF_READ')
