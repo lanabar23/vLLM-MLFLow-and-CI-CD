@@ -1,5 +1,6 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from huggingface_hub import login
+from dotenv import load_dotenv  
 from langfuse import Langfuse
 import pandas as pd
 import torch
