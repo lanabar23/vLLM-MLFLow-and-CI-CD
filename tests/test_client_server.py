@@ -1,4 +1,4 @@
-import pytest
+#import pytest
 import requests
 import logging
 from constants import SERVER_URL
@@ -10,8 +10,8 @@ your_server_url = f'http://{SERVER_URL}' #
 print(your_server_url)
 
 #@pytest.fixture
-def server_url():
-    return f'http://{SERVER_URL}'  #{your_server_url}'
+# def server_url():
+#     return f'http://{SERVER_URL}'  #{your_server_url}'
 
 def test_get_data(server_url):
     logging.debug(f"Отправляем GET-запрос на {server_url}/data")
