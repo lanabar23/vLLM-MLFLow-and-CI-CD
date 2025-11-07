@@ -1,34 +1,8 @@
-name: Main Workflow
+name: PretestModel Workflow
 
 on: [push]
 
-jobs:
-  test-ping-external_IP:
-    runs-on: ubuntu-latest
-    steps: 
-    - name: Checkout repository
-      uses: actions/checkout@v2
-    - name: Install dependencies
-      run: pip install pytest requests        
-    - name: Run tests
-      #run: pytest tests/test_ping.py
-      run: python tests/test_ping.py
-
-  test-and-build:
-    needs: test-ping-external_IP
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-    - name: Install dependencies
-      run: pip install pytest requests        
-    - name: Run tests
-      run: python tests/test_client_server.py
-      #run: pytest tests/test_client_server.py
-    # Оставляем сборку контейнеров закомментированными, так как они пока не используются    
-    # - name: Build Docker image
-    #   run: docker build -t my-image .
-
+jobs:  
   pre-test-model:
     needs: test-and-build
     runs-on: ubuntu-latest
@@ -61,6 +35,11 @@ jobs:
       run: pip install mlflow langfuse # scikit-learn pandas numpy
     - name: Test model using MLflow, Langfuse
       run: python model_tests.py
+
+  # Оставляем сборку контейнеров закомментированными, так как они пока не используются    
+    # - name: Build Docker image
+    #   run: docker build -t my-image .
+
 
 
 # Вариант файла после прохода всех этапов

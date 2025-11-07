@@ -1,4 +1,5 @@
-name: Main Workflow
+name: NetworkTest Workflow
+# Main Workflow
 
 on: [push]
 
