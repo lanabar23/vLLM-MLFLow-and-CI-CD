@@ -1,0 +1,28 @@
+name: Main Workflow
+
+on: [push]
+
+jobs:
+  test-ping-IP:
+    runs-on: ubuntu-latest
+    steps: 
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Install dependencies
+      run: pip install  requests     
+      #pytest   
+    - name: Run tests
+      #run: pytest tests/test_ping.py
+      run: python tests/test_ping.py
+
+  test-and-build:
+    needs: test-ping-IP
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    # - name: Install dependencies
+    #   run: pip install pytest requests        
+    - name: Run tests
+      run: python tests/test_client_server.py
+      #run: pytest tests/test_client_server.py

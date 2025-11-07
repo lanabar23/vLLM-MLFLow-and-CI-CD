@@ -6,31 +6,31 @@ from huggingface_hub import login
 import vllm
 import os 
 
+model_loader():
+    load_dotenv()
+    hf_access_token = os.getenv('HF_READ')
+    login(token=hf_access_token)
 
-load_dotenv()
-hf_access_token = os.getenv('HF_READ')
-login(token=hf_access_token)
+    model_name = os.getenv('MODEL_NAME')
 
-model_name = 'facebook/opt-1.3b'
+    app = Flask(__name__)
 
-app = Flask(__name__)
+    # Load the model using vLLM
+    # model = vllm.LLM(model='path_to_your_model', tokenizer='tokenizer_name')
+    # generator = vllm.SamplingParams()
 
-# Load the model using vLLM
-# model = vllm.LLM(model='path_to_your_model', tokenizer='tokenizer_name')
-# generator = vllm.SamplingParams()
+    tokenizer = AutoTokenizer.from_pretrained(model-name,
+                    token=token,
+                    trust_remote_code=True
+                    )
 
-tokenizer = AutoTokenizer.from_pretrained(model-name,
-                token=token,
-                trust_remote_code=True
-                )
+    if tokenizer.pad_token_id is None:
+        tokenizer.pad_token_id = tokenizer.eos_token_id
 
-if tokenizer.pad_token_id is None:
-    tokenizer.pad_token_id = tokenizer.eos_token_id
+    model = AutoModelForCausalLM.from_pretrained(model-name).to("cpu")
 
-model = AutoModelForCausalLM.from_pretrained(model-name).to("cpu")
-
-engine_args = AsyncEngineArgs(model=model-name)
-engine = AsyncLLMEngine(engine_args)
+    engine_args = AsyncEngineArgs(model=model-name)
+    engine = AsyncLLMEngine(engine_args)
 
 
 

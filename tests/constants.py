@@ -8,3 +8,5 @@ PREDICT_URL = f"http://{SERVER_URL}:{SERVER_PORT}/predict"
 
 # Другие возможные константы
 # CLIENT_URL = '...'
+
+MODEL_MAME = 'facebook/opt-1.3b'

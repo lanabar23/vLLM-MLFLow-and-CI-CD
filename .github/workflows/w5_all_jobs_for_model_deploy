@@ -1,3 +1,4 @@
+# Вариант файла без кэша после прохода всех этапов
 name: Main Workflow
 
 on: [push]
@@ -23,7 +24,8 @@ jobs:
     - name: Install dependencies
       run: pip install pytest requests        
     - name: Run tests
-      run: pytest tests/test_client_server.py
+      run: python tests/test_client_server.py
+      #run: pytest tests/test_client_server.py
     # Оставляем сборку контейнеров закомментированными, так как они пока не используются    
     # - name: Build Docker image
     #   run: docker build -t my-image .
@@ -62,7 +64,7 @@ jobs:
       run: python model_tests.py
 
 
-# Вариант файла после прохода всех этапов
+# Вариант файла с кэшем после прохода всех этапов
 # name: Main Workflow
 
 # on: [push]

@@ -3,7 +3,8 @@ name: Deploy to VM
 on:
   push:
     branches:
-      - main
+      - vllm_cicd 
+      # main
 
 jobs:
   deploy:

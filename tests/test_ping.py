@@ -3,6 +3,8 @@ import logging
 import subprocess
 from constants import SERVER_URL
 
+logging.basicConfig(level=logging.DEBUG)
+
 #@pytest.fixture
 def server_url():
     return  SERVER_URL #'5.255.255.77' # "176.108.250.95"  # Замените на ваш IP-адрес
