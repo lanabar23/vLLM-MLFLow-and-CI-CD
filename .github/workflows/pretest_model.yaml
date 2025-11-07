@@ -4,15 +4,16 @@ on: [push]
 
 jobs:  
   pre-test-model:
-    needs: test-and-build
+    #needs: test-and-build
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
     - name: Install dependencies for pre-testing
-      run: pip install scikit-learn pandas numpy  # mlflow 
+      run: pip install scikit-learn pandas numpy langfuse # mlflow 
     - name: Run Model Pre-Tests
-      run: pytest tests/model_pre_tests.py
+      run: python tests/model_pretest.py
+      # run: pytest tests/model_pretest.py
 
   train-model:
     needs: pre-test-model

@@ -4,7 +4,7 @@ name: Main Workflow
 on: [push]
 
 jobs:
-  test-ping-external_IP:
+  test-ping-IP:
     runs-on: ubuntu-latest
     steps: 
     - name: Checkout repository
@@ -16,7 +16,7 @@ jobs:
       run: python tests/test_ping.py
 
   test-and-build:
-    needs: test-ping-external_IP
+    needs: test-ping-IP
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
