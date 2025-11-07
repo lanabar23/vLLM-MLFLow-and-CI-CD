@@ -1,7 +1,7 @@
 import pytest
 import requests
 import logging
-from .constants import SERVER_URL
+from constants import SERVER_URL
 
 # Настройка логирования
 logging.basicConfig(level=logging.DEBUG)
